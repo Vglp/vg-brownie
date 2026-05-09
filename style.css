@@ -1,0 +1,144 @@
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Arial;
+}
+
+body{
+  background:#120d0b;
+  color:white;
+}
+
+.hero{
+  height:100vh;
+  background:url('https://images.unsplash.com/photo-1519864600265-abb23847ef2c?q=80&w=1600&auto=format&fit=crop');
+  background-size:cover;
+  background-position:center;
+  position:relative;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.overlay{
+  position:absolute;
+  inset:0;
+  background:rgba(0,0,0,0.7);
+}
+
+.hero-content{
+  position:relative;
+  z-index:1;
+  text-align:center;
+  max-width:700px;
+  padding:20px;
+}
+
+.hero h1{
+  font-size:70px;
+  margin-bottom:20px;
+  color:#f4d7a1;
+}
+
+.hero p{
+  font-size:22px;
+  margin-bottom:30px;
+  line-height:1.6;
+}
+
+.hero a{
+  display:inline-block;
+  background:#8B4513;
+  color:white;
+  text-decoration:none;
+  padding:18px 40px;
+  border-radius:12px;
+  font-size:20px;
+  transition:0.3s;
+}
+
+.hero a:hover{
+  background:#a0522d;
+}
+
+.menu{
+  padding:80px 40px;
+}
+
+.menu h2{
+  text-align:center;
+  font-size:50px;
+  margin-bottom:60px;
+  color:#f4d7a1;
+}
+
+.cards{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+  gap:30px;
+}
+
+.card{
+  background:#1d1411;
+  border-radius:20px;
+  overflow:hidden;
+  transition:0.3s;
+}
+
+.card:hover{
+  transform:translateY(-10px);
+}
+
+.card img{
+  width:100%;
+  height:260px;
+  object-fit:cover;
+}
+
+.card-content{
+  padding:25px;
+}
+
+.card-content h3{
+  font-size:28px;
+  margin-bottom:15px;
+}
+
+.card-content p{
+  color:#ccc;
+  line-height:1.6;
+  margin-bottom:20px;
+}
+
+.card-content span{
+  display:block;
+  font-size:28px;
+  font-weight:bold;
+  color:#f4d7a1;
+  margin-bottom:20px;
+}
+
+.card-content button{
+  width:100%;
+  border:none;
+  background:#8B4513;
+  color:white;
+  padding:16px;
+  border-radius:12px;
+  font-size:18px;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+.card-content button:hover{
+  background:#a0522d;
+}
+
+footer{
+  padding:30px;
+  text-align:center;
+  border-top:1px solid rgba(255,255,255,0.1);
+  color:#999;
+}
