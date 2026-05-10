@@ -503,3 +503,67 @@ footer{
     transform:translateY(0px);
   }
 }
+
+@media (max-width: 768px){
+
+  .hero h1{
+    font-size:38px;
+  }
+
+  .hero p{
+    font-size:16px;
+    padding:0 10px;
+  }
+
+  .menu{
+    padding:40px 15px;
+  }
+
+  .cards{
+    padding-right:0;
+    grid-template-columns:1fr;
+  }
+
+  .card img{
+    height:200px;
+  }
+
+  .card-content h3{
+    font-size:22px;
+  }
+
+  .card-content span{
+    font-size:22px;
+  }
+
+  .card-content button{
+    font-size:16px;
+    padding:14px;
+  }
+}
+
+@media (max-width: 768px){
+
+  .cart{
+    position:fixed;
+    width:100%;
+    height:70vh;
+    right:0;
+    top:auto;
+    bottom:0;
+    transform:none;
+    border-radius:20px 20px 0 0;
+  }
+
+  .cart-fechado{
+    bottom:-80vh;
+  }
+}
+
+@media (max-width:768px){
+  .toggle-cart{
+    width:55px;
+    height:55px;
+    font-size:24px;
+  }
+}
