@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+
+  <div class="scroll-aviso">
+  ⬇️ Arraste para baixo para ver mais informações
+</div>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <meta
+    name="description"
+    content="Brownies artesanais premium com muito chocolate e recheios incríveis."
+  >
+
+  <meta name="theme-color" content="#120d0b">
+
+  <title>VG Brownie</title>
+
+  <link rel="icon" href="logo.png">
+
+  <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+  <button class="toggle-cart" onclick="toggleCart()">
+    🛒
+  </button>
+
+  <header class="hero">
+
+    <div class="overlay"></div>
+
+    <div class="hero-content">
+
+      <img
+        src="logo.png"
+        class="logo"
+        alt="Logo VG Brownie"
+      >
+
+      <h1>VG Brownie 🍫</h1>
+
+      <p>
+        Brownies artesanais feitos com muito chocolate e recheios incríveis.
+      </p>
+
+    </div>
+
+  </header>
+
+
+
+  <section class="promo">
+
+    <h2>🔥 Promoção da Semana 🔥</h2>
+
+    <p>
+      Na compra de 4 brownies, ganhe 1 grátis 🍫
+    </p>
+
+  </section>
+
+  <section class="best-sellers">
+
+    <h2>⭐ Mais Vendidos</h2>
+
+    <div class="best-grid">
+
+      <div class="best-item">
+        🍫 Tradicional
+      </div>
+
+      <div class="best-item">
+        🥜 Amendoim
+      </div>
+
+      <div class="best-item">
+        🍓 Brigadeiro
+      </div>
+
+    </div>
+
+  </section>
+
+  <section class="menu">
+
+    <h2>Cardápio Digital</h2>
+
+    <div class="cart" id="cart">
+
+      <h3>
+        🛒 Carrinho
+        <span id="contador-carrinho">0</span>
+      </h3>
+
+      <div id="cart-items"></div>
+
+      <div class="cart-total">
+        Total: <span id="cart-total">R$ 0,00</span>
+      </div>
+
+      <button
+        class="finish-btn"
+        onclick="finalizarPedido()"
+      >
+        Finalizar Pedido
+      </button>
+
+    </div>
+
+    <div class="cards">
+
+      <div class="card">
+
+        <img
+          src="fotos_b/tradicional.jpg"
+          alt="Brownie Tradicional"
+          loading="lazy"
+        >
+
+        <div class="card-content">
+
+          <h3>Brownie Tradicional</h3>
+
+          <p>
+            Chocolate intenso e casquinha crocante.
+          </p>
+
+          <span>R$ 10,00</span>
+
+          <button
+            onclick="adicionarCarrinho('Brownie Tradicional', 10)"
+          >
+            Adicionar
+          </button>
+
+        </div>
+
+      </div>
+
+      <div class="card">
+
+        <img
+          src="fotos_b/maracuja.jpg"
+          alt="Brownie Maracujá"
+          loading="lazy"
+        >
+
+        <div class="card-content">
+
+          <h3>Brownie Maracujá</h3>
+
+          <p>
+            Chocolate com recheio cremoso de maracujá.
+          </p>
+
+          <span>R$ 10,00</span>
+
+          <button
+            onclick="adicionarCarrinho('Brownie Maracujá', 10)"
+          >
+            Adicionar
+          </button>
+
+        </div>
+
+      </div>
+
+      <div class="card">
+
+        <img
+          src="fotos_b/amendoin.jpg"
+          alt="Brownie Amendoim"
+          loading="lazy"
+        >
+
+        <div class="card-content">
+
+          <h3>Brownie Amendoim</h3>
+
+          <p>
+            Sabor intenso com toque crocante.
+          </p>
+
+          <span>R$ 10,00</span>
+
+          <button
+            onclick="adicionarCarrinho('Brownie Amendoim', 10)"
+          >
+            Adicionar
+          </button>
+
+        </div>
+
+      </div>
+
+      <div class="card">
+
+        <img
+          src="fotos_b/brigadeiro.jpg"
+          alt="Brownie Brigadeiro"
+          loading="lazy"
+        >
+
+        <div class="card-content">
+
+          <h3>Brownie Brigadeiro</h3>
+
+          <p>
+            Recheado com brigadeiro gourmet.
+          </p>
+
+          <span>R$ 10,00</span>
+
+          <button
+            onclick="adicionarCarrinho('Brownie Brigadeiro', 10)"
+          >
+            Adicionar
+          </button>
+
+        </div>
+
+      </div>
+
+      <div class="card">
+
+        <img
+          src="fotos_b/leite_ninho.jpg"
+          alt="Brownie Leite Ninho"
+          loading="lazy"
+        >
+
+        <div class="card-content">
+
+          <h3>Brownie Leite Ninho</h3>
+
+          <p>
+            Cremoso e extremamente saboroso.
+          </p>
+
+          <span>R$ 10,00</span>
+
+          <button
+            onclick="adicionarCarrinho('Brownie Leite Ninho', 10)"
+          >
+            Adicionar
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <section class="pix-area">
+
+    <h2>💳 Pagamento via Pix</h2>
+
+    <p>Escaneie o QR Code:</p>
+
+    <img
+      src="qrcode.jpeg"
+      class="pix-qr"
+      alt="QR Code Pix"
+    >
+
+    <p class="pix-chave">
+      Chave Pix: 100.798.222-58
+    </p>
+
+  </section>
+
+  <footer>
+    <p>© 2026 VG Brownie</p>
+  </footer>
+
+  <a
+    href="https://wa.me/5591985982706"
+    class="whatsapp-float"
+    target="_blank"
+    rel="noopener"
+  >
+    💬
+  </a>
+
+  <div id="toast"></div>
+
+  <script src="script.js"></script>
+
+</body>
+</html>
