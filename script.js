@@ -24,7 +24,7 @@ function adicionarCarrinho(nome, preco){
 
   atualizarCarrinho();
 
-  mostrarToast(`${nome} adicionado! 🍫`);
+  mostrarToast(`${nome} adicionado! 🍫 Olhe seu carrinho 🛒`);
 
   if(navigator.vibrate){
 
@@ -206,15 +206,24 @@ function mostrarToast(texto){
   const toast =
   document.getElementById('toast');
 
-  toast.innerText = texto;
+  if(!toast){
+    console.log('Toast não encontrado');
+    return;
+  }
 
-  toast.classList.add('show-toast');
+  toast.innerHTML = texto;
+
+  toast.style.opacity = '1';
+
+  toast.style.top = '30px';
 
   clearTimeout(toastTimeout);
 
   toastTimeout = setTimeout(() => {
 
-    toast.classList.remove('show-toast');
+    toast.style.opacity = '0';
+
+    toast.style.top = '-120px';
 
   }, 2500);
 }
@@ -230,3 +239,23 @@ function toggleCart(){
 console.log("SCRIPT FUNCIONANDO");
 
 atualizarCarrinho();
+
+if('serviceWorker' in navigator){
+
+  window.addEventListener('load', () => {
+
+    navigator.serviceWorker
+    .register('./sw.js')
+    .then(() => {
+
+      console.log('PWA funcionando');
+
+    })
+    .catch(err => {
+
+      console.log('Erro PWA:', err);
+
+    });
+
+  });
+}
