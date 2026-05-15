@@ -1,0 +1,21 @@
+{
+  "name": "VG Brownie",
+  "short_name": "VG Brownie",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#120d0b",
+  "theme_color": "#8B4513",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "logo.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "logo.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
