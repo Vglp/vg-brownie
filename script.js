@@ -4,6 +4,41 @@ JSON.parse(localStorage.getItem('carrinho'))
 
 let toastTimeout;
 
+// A promoção vale para o pedido inteiro: com 2 ou mais brownies,
+// cada unidade passa a custar R$ 10,00.
+const QUANTIDADE_MINIMA_DESCONTO = 2;
+const PRECO_COM_DESCONTO = 10;
+
+function obterPrecoDoCarrinho(){
+
+  const quantidadeTotal = carrinho.reduce(
+    (total, item) => total + item.quantidade,
+    0
+  );
+
+  const descontoAtivo = quantidadeTotal >= QUANTIDADE_MINIMA_DESCONTO;
+
+  return {
+    quantidadeTotal,
+    descontoAtivo
+  };
+}
+
+function obterPrecoUnitario(item, descontoAtivo){
+
+  return descontoAtivo ? PRECO_COM_DESCONTO : item.preco;
+}
+
+function calcularTotalDoPedido(){
+
+  const { descontoAtivo } = obterPrecoDoCarrinho();
+
+  return carrinho.reduce(
+    (total, item) => total + obterPrecoUnitario(item, descontoAtivo) * item.quantidade,
+    0
+  );
+}
+
 function adicionarCarrinho(nome, preco){
 
   const itemExistente =
@@ -81,16 +116,14 @@ function atualizarCarrinho(){
 
   let total = 0;
 
-  let totalItens = 0;
+  const { quantidadeTotal, descontoAtivo } = obterPrecoDoCarrinho();
 
   carrinho.forEach(item => {
 
     const subtotal =
-    item.preco * item.quantidade;
+    obterPrecoUnitario(item, descontoAtivo) * item.quantidade;
 
     total += subtotal;
-
-    totalItens += item.quantidade;
 
     cartItems.innerHTML += `
 
@@ -138,7 +171,7 @@ function atualizarCarrinho(){
   totalElement.innerText =
   `R$ ${total.toFixed(2)}`;
 
-  contador.innerText = totalItens;
+  contador.innerText = quantidadeTotal;
 
   contador.animate(
 
@@ -169,15 +202,24 @@ function finalizarPedido(){
     return;
   }
 
+  const totalElement = document.getElementById('payment-total');
+  const modal = document.getElementById('payment-modal');
+
+  totalElement.innerText = `R$ ${calcularTotalDoPedido().toFixed(2)}`;
+  modal.hidden = false;
+  return;
+
   let mensagem =
   'Olá, quero fazer um pedido:%0A%0A';
 
   let total = 0;
 
+  const { descontoAtivo } = obterPrecoDoCarrinho();
+
   carrinho.forEach(item => {
 
     const subtotal =
-    item.preco * item.quantidade;
+    obterPrecoUnitario(item, descontoAtivo) * item.quantidade;
 
     mensagem +=
     `🍫 ${item.nome}%0AQuantidade: ${item.quantidade}%0ASubtotal: R$ ${subtotal.toFixed(2)}%0A%0A`;
@@ -198,6 +240,62 @@ function finalizarPedido(){
 
   carrinho = [];
 
+  atualizarCarrinho();
+}
+
+function fecharPagamento(){
+
+  document.getElementById('payment-modal').hidden = true;
+}
+
+function copiarChavePix(){
+
+  const chavePix = '100.798.222-58';
+
+  if(navigator.clipboard && navigator.clipboard.writeText){
+
+    navigator.clipboard.writeText(chavePix)
+    .then(() => mostrarToast('Chave Pix copiada!'))
+    .catch(() => copiarChavePixAlternativa(chavePix));
+
+    return;
+  }
+
+  copiarChavePixAlternativa(chavePix);
+}
+
+function copiarChavePixAlternativa(chavePix){
+
+  const campoTemporario = document.createElement('textarea');
+  campoTemporario.value = chavePix;
+  document.body.appendChild(campoTemporario);
+  campoTemporario.select();
+  document.execCommand('copy');
+  campoTemporario.remove();
+  mostrarToast('Chave Pix copiada!');
+}
+
+function enviarPedidoWhatsApp(){
+
+  const { descontoAtivo } = obterPrecoDoCarrinho();
+  let mensagem = 'Olá, quero fazer um pedido:\n\n';
+
+  carrinho.forEach(item => {
+
+    const subtotal = obterPrecoUnitario(item, descontoAtivo) * item.quantidade;
+
+    mensagem += `🍫 ${item.nome}\nQuantidade: ${item.quantidade}\nSubtotal: R$ ${subtotal.toFixed(2)}\n\n`;
+  });
+
+  mensagem += `🛒 Total: R$ ${calcularTotalDoPedido().toFixed(2)}\n\nPagamento Pix realizado.`;
+
+  window.open(
+    `https://wa.me/5591985982706?text=${encodeURIComponent(mensagem)}`,
+    '_blank'
+  );
+
+  carrinho = [];
+  fecharPagamento();
   atualizarCarrinho();
 }
 
