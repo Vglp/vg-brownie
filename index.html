@@ -67,7 +67,7 @@
     <h2>🔥 Promoção da Semana 🔥</h2>
 
     <p>
-      Na compra de 4 brownies, ganhe 1 grátis 🍫
+      🍫 COMPRAS AÇIMA DE 2 BROWNIES GANHE DESCONTO 🍫
     </p>
 
   </section>
@@ -79,15 +79,15 @@
     <div class="best-grid">
 
       <div class="best-item">
-        🍫 Tradicional
+        🍫 Brigadeiro
       </div>
 
       <div class="best-item">
-        🥜 Amendoim
+        😋 Leite ninho
       </div>
 
       <div class="best-item">
-        🟤 Brigadeiro
+        🟡 Maracujá
       </div>
 
     </div>
@@ -148,10 +148,10 @@
             Chocolate intenso e casquinha crocante.
           </p>
 
-          <span>R$ 10,00</span>
+          <span>R$ 12,00</span>
 
           <button
-            onclick="adicionarCarrinho('Brownie Tradicional', 10)"
+            onclick="adicionarCarrinho('Brownie Tradicional', 12)"
           >
             Adicionar
           </button>
@@ -176,10 +176,10 @@
             Chocolate com recheio cremoso de maracujá.
           </p>
 
-          <span>R$ 10,00</span>
+          <span>R$ 12,00</span>
 
           <button
-            onclick="adicionarCarrinho('Brownie Maracujá', 10)"
+            onclick="adicionarCarrinho('Brownie Maracujá', 12)"
           >
             Adicionar
           </button>
@@ -204,10 +204,10 @@
             Sabor intenso com toque crocante.
           </p>
 
-          <span>R$ 10,00</span>
+          <span>R$ 12,00</span>
 
           <button
-            onclick="adicionarCarrinho('Brownie Amendoim', 10)"
+            onclick="adicionarCarrinho('Brownie Amendoim', 12)"
           >
             Adicionar
           </button>
@@ -232,10 +232,10 @@
             Recheado com brigadeiro gourmet.
           </p>
 
-          <span>R$ 10,00</span>
+          <span>R$ 12,00</span>
 
           <button
-            onclick="adicionarCarrinho('Brownie Brigadeiro', 10)"
+            onclick="adicionarCarrinho('Brownie Brigadeiro', 12)"
           >
             Adicionar
           </button>
@@ -260,10 +260,10 @@
             Cremoso e extremamente saboroso.
           </p>
 
-          <span>R$ 10,00</span>
+          <span>R$ 12,00</span>
 
           <button
-            onclick="adicionarCarrinho('Brownie Leite Ninho', 10)"
+            onclick="adicionarCarrinho('Brownie Leite Ninho', 12)"
           >
             Adicionar
           </button>
@@ -276,25 +276,24 @@
 
   </section>
 
-  <section class="pix-area">
-
-    <h2>💳 Pagamento via Pix</h2>
-
-    <p>
-      Escaneie o QR Code:
-    </p>
-
-    <img
-      src="qrcode.jpeg"
-      class="pix-qr"
-      alt="QR Code Pix"
-    >
-
-    <p class="pix-chave">
-      Chave Pix: 100.798.222-58
-    </p>
-
-  </section>
+  <div class="payment-modal" id="payment-modal" hidden>
+    <div class="payment-box" role="dialog" aria-modal="true" aria-labelledby="payment-title">
+      <button class="payment-close" onclick="fecharPagamento()" aria-label="Fechar pagamento">×</button>
+      <h2 id="payment-title">Pagamento via Pix</h2>
+      <p>O valor para pagar é:</p>
+      <strong id="payment-total">R$ 0,00</strong>
+      <p class="payment-help">No aplicativo do seu banco, informe esse valor ao fazer o Pix.</p>
+      <img src="qrcode.jpeg" class="pix-qr" alt="QR Code Pix para pagamento">
+      <p>Ou use a chave Pix:</p>
+      <div class="pix-key">
+        <span>100.798.222-58</span>
+        <button onclick="copiarChavePix()">Copiar chave</button>
+      </div>
+      <button class="whatsapp-order-btn" onclick="enviarPedidoWhatsApp()">
+        Já paguei — enviar pedido no WhatsApp
+      </button>
+    </div>
+  </div>
 
   <footer>
     <p>
