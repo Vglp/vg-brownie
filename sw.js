@@ -1,4 +1,4 @@
-const CACHE_NAME = 'vgbrownie-cache-v1';
+const CACHE_NAME = 'vgbrownie-cache-v3';
 
 const urlsToCache = [
   './',
